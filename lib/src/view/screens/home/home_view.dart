@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kicksmarket/src/constants/color_palettes.dart';
+import 'package:kicksmarket/src/view/widget/button.dart';
 import 'package:kicksmarket/src/view/widget/category_card.dart';
 import 'package:kicksmarket/src/view/widget/product_card.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +16,10 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: Palette.primary,
         toolbarHeight: 75.0,
         centerTitle: true,
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.menu),
+        ),
         title: const Text(
           "KicksMarket",
           style: TextStyle(
@@ -60,27 +59,15 @@ class _HomeViewState extends State<HomeView> {
                             child: const Text(
                               "30 % Discount off all shoes",
                               style: TextStyle(
-                                  fontSize: 16.0, fontWeight: FontWeight.w600),
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height / 20,
                             width: MediaQuery.of(context).size.width / 3.2,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Palette.button,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  )),
-                              child: const Text(
-                                "Explore Now",
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: Palette.white,
-                                ),
-                              ),
-                            ),
+                            child: const Button(title: "Explore Now"),
                           ),
                         ],
                       ),
@@ -98,37 +85,12 @@ class _HomeViewState extends State<HomeView> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          // child: Container(
-                          //   color: Colors.black,
-                          // )
                         ),
                       ],
                     )
                   ],
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(vertical: 15.0),
-              //   child: Container(
-              //     child: TextField(
-              //       onChanged: null,
-              //       style: TextStyle(
-              //         fontSize: 16.0,
-              //         letterSpacing: 0.5,
-              //       ),
-              //       decoration: InputDecoration(
-              //         filled: true,
-              //         fillColor: Palette.gray[0],
-              //         border: OutlineInputBorder(
-              //           borderRadius: BorderRadius.circular(10.0),
-              //           borderSide: BorderSide.none,
-              //         ),
-              //         hintText: "Search",
-              //         hintStyle: TextStyle(),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               const Padding(
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 child: Text(
@@ -149,7 +111,7 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              ProductCard(),
+              const ProductCard(),
             ],
           ),
         ),

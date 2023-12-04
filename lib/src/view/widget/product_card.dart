@@ -30,8 +30,7 @@ class ProductCard extends StatelessWidget {
             child: Card(
               elevation: 0,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
+                  borderRadius: BorderRadius.circular(20.0)),
               color: Palette.gray[3],
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -74,8 +73,7 @@ class ProductCard extends StatelessWidget {
                           child: Container(
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10.0),
-                              ),
+                                  topLeft: Radius.circular(10.0)),
                               color: Palette.button,
                             ),
                             child: const Icon(

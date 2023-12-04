@@ -21,7 +21,7 @@ var shoesModelList = [
     id: 1,
     name: "Nike Air Max 97 OG",
     brand: "Nike",
-    price: double.parse(2849000.toString()),
+    price: 2849000,
     description:
         "Push your style full speed ahead with the Nike Air Max 97 OG. Its iconic design takes inspiration from water droplets and Japanese bullet trains. Full-length Nike Air cushioning lets you ride in first-class comfort.",
     imageAsset: "assets/images/product/shoes_1.png",

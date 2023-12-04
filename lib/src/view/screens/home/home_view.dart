@@ -77,7 +77,7 @@ class HomeView extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: 155.0,
-                          height: 140.0,
+                          height: 150.0,
                           child: Transform.flip(
                             flipX: true,
                             child: Image.asset(

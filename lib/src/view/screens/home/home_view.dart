@@ -29,7 +29,9 @@ class HomeView extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/cart');
+            },
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
         ],
@@ -67,7 +69,14 @@ class HomeView extends StatelessWidget {
                           SizedBox(
                             height: MediaQuery.of(context).size.height / 20,
                             width: MediaQuery.of(context).size.width / 3.2,
-                            child: const Button(title: "Explore Now"),
+                            child: InkWell(
+                              onTap: () {},
+                              highlightColor: Colors.transparent,
+                              splashColor: Colors.transparent,
+                              child: const Button(
+                                title: "Explore Now",
+                              ),
+                            ),
                           ),
                         ],
                       ),

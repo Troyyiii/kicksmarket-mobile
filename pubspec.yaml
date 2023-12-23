@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.1.1
   intl: ^0.18.1
+  google_nav_bar: ^5.0.6
+  quickalert: ^1.0.2
 
 dev_dependencies:
   flutter_test:

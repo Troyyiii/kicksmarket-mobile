@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kicksmarket/src/constants/color_palettes.dart';
 import 'package:kicksmarket/src/models/shoes_model.dart';
+import 'package:kicksmarket/src/providers/cart_provider.dart';
 import 'package:kicksmarket/src/utils/currency_formatter.dart';
+import 'package:provider/provider.dart';
+import 'package:quickalert/models/quickalert_animtype.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class DetailsView extends StatelessWidget {
   final ShoesModel shoes;
@@ -10,6 +15,8 @@ class DetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     return Scaffold(
       backgroundColor: Palette.primary,
       appBar: AppBar(
@@ -23,7 +30,9 @@ class DetailsView extends StatelessWidget {
             icon: const Icon(Icons.arrow_back)),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/cart');
+            },
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
         ],
@@ -113,7 +122,40 @@ class DetailsView extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onTap: () {
+            cartProvider.addCart(shoes);
+            QuickAlert.show(
+              context: context,
+              type: QuickAlertType.success,
+              showConfirmBtn: false,
+              backgroundColor: Palette.gray[0],
+              barrierColor: Colors.transparent,
+              animType: QuickAlertAnimType.slideInUp,
+              autoCloseDuration: const Duration(seconds: 2),
+              text: "The item has been successfully added",
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Palette.button,
+            ),
+            height: MediaQuery.of(context).size.height / 15,
+            child: const Center(
+              child: Text(
+                "Add to Cart",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1,
+                  color: Palette.white,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

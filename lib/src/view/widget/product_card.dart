@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:kicksmarket/src/constants/color_palettes.dart';
 import 'package:kicksmarket/src/models/shoes_model.dart';
+import 'package:kicksmarket/src/providers/cart_provider.dart';
 import 'package:kicksmarket/src/utils/currency_formatter.dart';
 import 'package:kicksmarket/src/view/screens/details/details_view.dart';
+import 'package:provider/provider.dart';
+import 'package:quickalert/quickalert.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
       child: GridView.builder(
@@ -48,9 +53,15 @@ class ProductCard extends StatelessWidget {
                           ),
                         ),
                         Center(
-                          child: Transform.rotate(
-                            angle: 25.0,
-                            child: Image.asset(shoes.imageAsset),
+                          child: SizedBox(
+                            height: 90,
+                            child: Transform.rotate(
+                              angle: 25.0,
+                              child: Image.asset(
+                                shoes.imageAsset,
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -69,7 +80,19 @@ class ProductCard extends StatelessWidget {
                           ),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            cartProvider.addCart(shoes);
+                            QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.success,
+                              showConfirmBtn: false,
+                              backgroundColor: Palette.gray[0],
+                              barrierColor: Colors.transparent,
+                              animType: QuickAlertAnimType.slideInUp,
+                              autoCloseDuration: const Duration(seconds: 2),
+                              text: "The item has been successfully added",
+                            );
+                          },
                           child: Container(
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
